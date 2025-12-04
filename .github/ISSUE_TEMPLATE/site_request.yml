@@ -1,0 +1,71 @@
+name: Site Request
+description: Request support for a new site / 请求支持新站点
+title: "[Site] "
+labels: ["site-request"]
+body:
+  - type: input
+    id: site_name
+    attributes:
+      label: Site Name / 站点名称
+    validations:
+      required: true
+
+  - type: input
+    id: site_url
+    attributes:
+      label: Site URL / 站点链接
+      placeholder: "https://example.com"
+    validations:
+      required: true
+
+  - type: input
+    id: site_type
+    attributes:
+      label: Site Type / 站点类型
+      description: |
+        Provide the content type category, such as:
+        - original / 原创
+        - reprint / 转载
+        - light novel / 轻小说
+        - manga / 漫画
+        - fanfic / 同人
+        - forum / 论坛
+
+        请填写站点所属的类型，以上为示例，可自由填写。
+      placeholder: "e.g. 原创 / 转载 / 轻小说"
+    validations:
+      required: true
+
+  - type: textarea
+    id: site_description
+    attributes:
+      label: Site Description / 站点描述
+      description: Basic introduction to the site. / 简单介绍一下这个站点。
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why should this site be added? / 希望添加该站点的理由
+      description: Explain why support for this site is important. / 请说明添加此站点的原因。
+
+  - type: textarea
+    id: access_model
+    attributes:
+      label: Access Model / 内容访问模式
+      description: |
+        Describe how chapters can be accessed on this site.
+
+        请描述站点的章节访问方式，例如:
+
+        - 全部免费，无需登录
+        - 部分章节收费 / 订阅
+        - 需要 App 才能查看部分内容
+        - 或其他访问规则
+      placeholder: |
+        e.g.
+        - Login required for latest chapters
+        - Early chapters free, latest chapters VIP-only
+        - 全部章节免费，无需登录
+        - 登录免费，但有部分付费章节

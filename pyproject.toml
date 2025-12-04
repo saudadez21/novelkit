@@ -1,0 +1,197 @@
+[project]
+name = "novelkit"
+description = "A toolkit for downloading and processing novels."
+authors = [
+    { name = "Saudade Z", email = "saudadez217@gmail.com" }
+]
+license = {file = "LICENSE"}
+readme = {file = "README.md", content-type = "text/markdown"}
+requires-python = ">=3.11"
+keywords = [
+  "novel",
+  "web novel",
+  "light novel",
+  "crawler",
+  "scraper",
+  "ebook",
+]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Environment :: Console",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: Chinese (Simplified)",
+    "Natural Language :: Chinese (Traditional)",
+    "Topic :: Utilities",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13"
+]
+dynamic = ["version"]
+dependencies = [
+    "rich",
+    "requests",
+    "pycryptodome",
+    "aiohttp",
+    "lxml",
+    "platformdirs",
+]
+
+[project.optional-dependencies]
+web-ui = [
+    "nicegui",
+]
+image-utils = [
+    "brotli",
+    "numpy",
+    "fonttools",
+    "pillow",
+]
+httpx = [
+    "httpx[http2]",
+]
+curl_cffi = [
+    "curl_cffi",
+]
+all-backends = [
+    "httpx[http2]",
+    "curl_cffi",
+]
+all = [
+    "nicegui",
+    "brotli",
+    "numpy",
+    "fonttools",
+    "pillow",
+    "httpx[http2]",
+    "curl_cffi",
+]
+
+docs = [
+    "mkdocs-material",
+    "mkdocstrings",
+    "mkdocstrings-python",
+]
+tests = [
+    "brotli",
+    "numpy",
+    "fonttools",
+    "pillow",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-aiohttp",
+    "pytest-cov",
+    "pytest-mock",
+    "types-requests",
+    "types-lxml",
+]
+ci = [
+    "nicegui",
+    "brotli",
+    "numpy",
+    "fonttools",
+    "pillow",
+    "curl_cffi",
+    "httpx[http2]",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-aiohttp",
+    "pytest-cov",
+    "pytest-mock",
+    "types-requests",
+    "types-lxml",
+    "mypy",
+    "ruff",
+    "pre-commit",
+]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "pytest-aiohttp",
+    "pytest-cov",
+    "pytest-mock",
+    "types-requests",
+    "types-lxml",
+    "mypy",
+    "ruff",
+    "pre-commit",
+    "commitizen",
+    "babel",
+    # "genbadge[all]",
+]
+
+[project.urls]
+Homepage = "https://saudadez21.github.io/novelkit/"
+Source = "https://github.com/saudadez21/novelkit"
+Issues = "https://github.com/saudadez21/novelkit/issues"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["novelkit", "novelkit.*"]
+
+[tool.setuptools.package-data]
+"novelkit" = ["py.typed"]
+"novelkit.resources.config" = ["*.toml"]
+"novelkit.resources.scripts" = ["*.js"]
+"novelkit.resources.json" = ["*.json"]
+"novelkit.resources.styles" = ["*.css"]
+"novelkit.locales" = ["*/LC_MESSAGES/*.mo"]
+
+[tool.setuptools.dynamic]
+version = {attr = "novelkit.__version__"}
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle (error)
+    "F",  # pyflakes
+    "B",  # bugbear
+    "C4", # flake8-comprehensions
+    "I",  # isort
+    "UP", # pyupgrade
+    "SIM" # flake8-simplify
+]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.13"
+ignore_missing_imports = true
+strict = true
+
+[tool.pytest.ini_options]
+minversion = "7.1"
+addopts = "--strict-markers"
+asyncio_default_fixture_loop_scope = "function"
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+omit = [
+  "src/novelkit/apps/*",
+  "src/novelkit/plugins/*",
+  "src/novelkit/__main__.py",
+]
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.0.1"
+version_files = [
+    "src/novelkit/version.py"
+]
+update_changelog_on_bump = true
+changelog_file = "CHANGELOG.md"
+changelog_incremental = true
+tag_format = "v$version"
+bump_message = "chore(release): bump version to $new_version"

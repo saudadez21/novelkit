@@ -1,0 +1,117 @@
+name: Bug Report
+description: Report a reproducible issue / 报告一个可复现的问题
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: checkboxes
+    id: latest_version
+    attributes:
+      label: Latest Version / 是否已更新到最新版本
+      description: Please confirm you are using the latest release. / 请确认你正在使用最新版本。
+      options:
+        - label: I am using the latest version / 我已更新到最新版本
+          required: true
+
+  - type: checkboxes
+    id: duplicate_issue
+    attributes:
+      label: Duplicate Check / 是否重复问题
+      description: Please search existing issues (including closed ones). / 请搜索现有问题 (包括已关闭的)。
+      options:
+        - label: I have searched existing issues / 我已搜索现有 Issue
+          required: true
+
+  - type: input
+    id: site
+    attributes:
+      label: Site (optional) / 站点 (可选)
+      description: |
+        The site where the issue occurred, if applicable.
+
+        如果问题与特定站点有关，请填写站点 key 或 URL (可选)
+      placeholder: "e.g. qidian / sfacg / https://example.com/book/123"
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug / 描述问题
+      description: Provide a clear and concise description of the issue. / 请清楚地描述你遇到的问题。
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: To Reproduce / 重现步骤
+      description: Steps to reproduce the behavior. / 描述如何重现问题。
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior / 预期行为
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior / 实际行为
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Config / 配置文件 (config.toml)
+      description: |
+        Paste your full `config.toml` or the modified portion.
+
+        请粘贴完整的 `config.toml` 内容或你修改过的部分。
+      placeholder: |
+        ```toml
+        # Example:
+        # [general]
+        # workers = 4
+        # request_interval = 0.5
+
+        # Paste your config.toml here
+        ```
+
+  - type: input
+    id: python_version
+    attributes:
+      label: Python Version / Python 版本
+      description: |
+        Provide your Python version (run `python --version`)
+
+        请填写你的 Python 版本 (运行 `python --version` 获取)
+      placeholder: "e.g. Python 3.12.2"
+
+  - type: input
+    id: version
+    attributes:
+      label: Package version / 软件版本
+      description: |
+        Provide your NovelKit version.
+        You can run `novelkit -v` to check the version.
+
+        请填写你使用的 NovelKit 版本。
+        可运行 `novelkit -v` 查看版本。
+      placeholder: "e.g. NovelKit v3.1.4"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs (if any) / 日志文件 (如有)
+      description: Paste error logs or attach files. / 粘贴或附加你的日志文件。
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context / 补充信息
