@@ -307,7 +307,8 @@ class ConfigAdapter:
                 result.append(self._dict_to_book_cfg(item))
             else:
                 raise ValueError(
-                    f"Invalid book entry: expected str|int|dict, got {type(item).__name__}"
+                    "Invalid book entry: expected str|int|dict, "
+                    f"got {type(item).__name__}"
                 )
         return result
 

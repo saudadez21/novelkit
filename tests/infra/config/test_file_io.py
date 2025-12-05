@@ -90,7 +90,7 @@ def test_load_config_none_found(tmp_path, monkeypatch):
 
 
 def test_load_by_extension_invalid_json(tmp_path):
-    """Invalid JSON -> raises ValueError('Invalid JSON in {path}: ...')."""
+    """Invalid JSON -> raises ValueError."""
     path = tmp_path / "broken.json"
     path.write_text("{ invalid json", encoding="utf-8")
 
@@ -101,7 +101,7 @@ def test_load_by_extension_invalid_json(tmp_path):
 
 
 def test_load_by_extension_invalid_toml(tmp_path):
-    """Invalid TOML -> raises ValueError('Invalid TOML in {path}: ...')."""
+    """Invalid TOML -> raises ValueError."""
     path = tmp_path / "broken.toml"
     path.write_text("a = [1,2,,3]", encoding="utf-8")  # invalid TOML
 
@@ -112,7 +112,7 @@ def test_load_by_extension_invalid_toml(tmp_path):
 
 
 def test_load_by_extension_unsupported_ext(tmp_path):
-    """Unsupported extension -> raises ValueError('Unsupported config file extension')."""
+    """Unsupported extension -> raises ValueError."""
     path = tmp_path / "settings.yaml"
     path.write_text("hello: 1")
 
@@ -123,7 +123,7 @@ def test_load_by_extension_unsupported_ext(tmp_path):
 
 
 def test_load_by_extension_root_not_dict(tmp_path):
-    """Parsed root is not dict -> raises ValueError('Config root must be a dict')."""
+    """Parsed root is not dict -> raises ValueError."""
     path = tmp_path / "not_dict.json"
     path.write_text(json.dumps([1, 2, 3]), encoding="utf-8")
 
@@ -194,7 +194,7 @@ def test_save_config_failure_propagates(tmp_path, monkeypatch):
 
     monkeypatch.setattr(Path, "open", fake_open)
 
-    with pytest.raises(Exception):
+    with pytest.raises(OSError):
         save_config({"a": 1}, outfile)
 
 
