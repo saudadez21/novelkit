@@ -146,8 +146,7 @@ class AiohttpSession(BaseSession):
         jar = self._session.cookie_jar
         for cookie in jar:
             if cookie.key == key:
-                value: str = cookie.value
-                return value
+                return cookie.value
         return None
 
     def clear_cookie(self, name: str) -> None:

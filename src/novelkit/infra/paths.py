@@ -11,8 +11,8 @@ PACKAGE_NAME = "novelkit"  # Python package name
 # Base config directory (e.g. ~/AppData/Local/novel_downloader/)
 USER_CONFIG_DIR = user_config_path(PACKAGE_NAME, appauthor=False)
 
-STATE_FILE = USER_CONFIG_DIR / "state.json"
-SETTING_FILE = USER_CONFIG_DIR / "settings.json"
+STATE_PATH = USER_CONFIG_DIR / "state.json"
+SETTING_PATH = USER_CONFIG_DIR / "settings.json"
 
 # -----------------------------------------------------------------------------
 # Embedded resources

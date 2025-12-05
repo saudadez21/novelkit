@@ -5,7 +5,7 @@ import logging
 from pathlib import Path
 from typing import Any
 
-from novelkit.infra.paths import DEFAULT_CONFIG_FILE, SETTING_FILE
+from novelkit.infra.paths import DEFAULT_CONFIG_FILE, SETTING_PATH
 
 logger = logging.getLogger(__name__)
 
@@ -100,7 +100,7 @@ def load_config(config_path: str | Path | None = None) -> dict[str, Any]:
     Resolution order:
         - Explicit `config_path` (if provided)
         - `settings.toml` or `settings.json` in the working directory
-        - `SETTING_FILE` fallback path
+        - `SETTING_PATH` fallback path
 
     Args:
         config_path: Optional explicit configuration file path.
@@ -115,7 +115,7 @@ def load_config(config_path: str | Path | None = None) -> dict[str, Any]:
     path = _resolve_file_path(
         user_path=config_path,
         local_filename=["settings.toml", "settings.json"],
-        fallback_path=SETTING_FILE,
+        fallback_path=SETTING_PATH,
     )
 
     if not path:
@@ -139,7 +139,7 @@ def copy_default_config(target: Path) -> None:
 
 def save_config(
     config: dict[str, Any],
-    output_path: str | Path = SETTING_FILE,
+    output_path: str | Path = SETTING_PATH,
 ) -> None:
     """
     Save configuration data to disk in JSON format.
@@ -165,7 +165,7 @@ def save_config(
 
 
 def save_config_file(
-    source_path: str | Path, output_path: str | Path = SETTING_FILE
+    source_path: str | Path, output_path: str | Path = SETTING_PATH
 ) -> None:
     """
     Load a TOML/JSON configuration file and export it as JSON.
