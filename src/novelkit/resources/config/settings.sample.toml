@@ -1,0 +1,75 @@
+# 全局通用设置
+[general]
+raw_data_dir = "./raw_data"        # 书籍原始 JSON/DB/图片 数据存放目录
+output_dir = "./downloads"         # 最终输出文件存放目录
+cache_dir = "./novel_cache"        # 本地缓存目录
+
+request_interval = 0.5             # 同一本书各章节请求间隔 (秒)
+workers = 4                        # 工作协程数
+max_connections = 10               # 并发连接的最大数
+max_rps = 1000.0                   # 最大请求速率 (requests per second)
+
+retry_times = 3                    # 请求失败重试次数
+backoff_factor = 2.0
+timeout = 10.0                     # 请求加载超时时间 (秒)
+storage_batch_size = 1
+
+cache_book_info = true             # 是否启用 book_info 缓存
+cache_chapter = true               # 是否启用章节缓存
+fetch_inaccessible = false         # 是否尝试获取未订阅章节
+
+backend = "aiohttp"                # aiohttp / httpx / curl_cffi
+locale_style = "simplified"        # simplified / traditional
+login_required = false
+# http2 = false
+# impersonate = "chrome"
+
+# 输出文件格式及相关选项
+[general.export]
+formats = [
+  "txt",
+  "epub",
+#   "html",
+]
+append_timestamp = true            # 在文件名中追加时间戳
+render_missing_chapter = true
+include_picture = true             # 是否附带书籍图片
+filename_template = "{title}_{author}"
+
+# 解析字体加密 / OCR / 图片章节等高级功能需要安装额外依赖
+# 参考文档: docs/guide/installation.md
+[general.parser]
+enable_ocr = false                 # 是否尝试本地解析混淆字体 / 图片章节
+batch_size = 32
+
+remove_watermark = false           # 图片章节是否尝试去水印
+
+# 以下为 PaddleOCR 文本识别的可选参数
+model_name = "PP-OCRv5_mobile_rec"
+# model_dir = "/path/to/inference"
+# device = "gpu"                    # "cpu" / "gpu"
+# cpu_threads = 10
+
+[general.debug]
+save_html = false
+log_dir = "./logs"
+log_level = "INFO"                 # DEBUG, INFO, WARNING, ERROR
+
+[plugins]
+# 是否启用本地插件目录
+enable_local_plugins = false
+# 是否覆盖内置实现
+override_builtins = false
+# 本地插件路径 (可选)
+local_plugins_path = "./novel_plugins"
+
+# [[general.processors]]
+# name = "cleaner"
+# overwrite = false
+# remove_invisible = true
+
+# title_removes = "path/to/title-remove.json"
+# title_replace = "path/to/title-replace.json"
+
+# content_removes = "path/to/content-remove.json"
+# content_replace = "path/to/content-replace.json"

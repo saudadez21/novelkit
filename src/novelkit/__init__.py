@@ -1,4 +1,4 @@
-from .version import __version__
+from .version import __version__ as __version__
 
 __title__ = "NovelKit"
 __description__ = "A toolkit for downloading and processing novels."
