@@ -67,6 +67,7 @@ all = [
 ]
 
 docs = [
+    "mkdocs-minify-plugin",
     "mkdocs-material",
     "mkdocstrings",
     "mkdocstrings-python",
