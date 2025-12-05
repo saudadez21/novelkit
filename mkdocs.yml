@@ -33,6 +33,10 @@ plugins:
       assets: false
       links_attr_map:
         target: _blank
+  - minify:
+      minify_html: true
+      minify_css: true
+      minify_js: true
   - mkdocstrings:
       handlers:
         python:
@@ -41,7 +45,7 @@ plugins:
             show_root_heading: true
             show_root_full_path: false
             show_signature: true
-            show_source: true
+            show_source: false
             separate_signature: true
             merge_init_into_class: true
 
@@ -75,6 +79,8 @@ nav:
   - Reference:
     - Infra:
       - Config Adapter: reference/infra/config_adapter.md
+      - Sessions: reference/infra/sessions.md
+    - Schemas: reference/schemas.md
 
 not_in_nav: |
   supported-sites/site-details/*
