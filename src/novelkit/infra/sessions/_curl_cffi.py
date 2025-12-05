@@ -141,8 +141,6 @@ class CurlCffiSession(BaseSession):
             return None
 
         value: str | None = self._session.cookies.get(key)
-        if isinstance(value, bytes):
-            return value.decode("utf-8", errors="ignore")
         return value
 
     def clear_cookie(self, name: str) -> None:

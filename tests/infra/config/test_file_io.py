@@ -57,12 +57,12 @@ def test_load_config_local_settings_json(tmp_path, monkeypatch):
 
 
 def test_load_config_fallback_setting_file(tmp_path, monkeypatch):
-    """No config_path, no local file, but SETTING_FILE exists -> load fallback."""
+    """No config_path, no local file, but SETTING_PATH exists -> load fallback."""
     fallback = tmp_path / "fallback.toml"
     fallback.write_text("a = 1\nb = '2'", encoding="utf-8")
 
     monkeypatch.setattr(
-        "novelkit.infra.config.file_io.SETTING_FILE",
+        "novelkit.infra.config.file_io.SETTING_PATH",
         fallback,
     )
     monkeypatch.chdir(tmp_path)
@@ -75,7 +75,7 @@ def test_load_config_none_found(tmp_path, monkeypatch):
     """No user path, no local settings, no fallback file -> FileNotFoundError."""
     fake_fallback = tmp_path / "nofile.toml"
     monkeypatch.setattr(
-        "novelkit.infra.config.file_io.SETTING_FILE",
+        "novelkit.infra.config.file_io.SETTING_PATH",
         fake_fallback,
     )
     monkeypatch.chdir(tmp_path)

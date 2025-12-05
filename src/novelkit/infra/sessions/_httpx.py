@@ -147,11 +147,7 @@ class HttpxSession(BaseSession):
     def get_cookie(self, key: str) -> str | None:
         if self._session is None:
             return None
-
-        value: str | None = self._session.cookies.get(key)
-        if isinstance(value, bytes):
-            return value.decode("utf-8", errors="ignore")
-        return value
+        return self._session.cookies.get(key)
 
     def clear_cookie(self, name: str) -> None:
         if self._session is None:

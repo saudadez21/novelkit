@@ -11,8 +11,6 @@ session layer, processor pipeline, and client workflow.
 
 ---
 
-::: novelkit.schemas.BookConfig
-
 ::: novelkit.schemas.ClientConfig
 
 ::: novelkit.schemas.ParserConfig
@@ -26,3 +24,23 @@ session layer, processor pipeline, and client workflow.
 ::: novelkit.schemas.SessionConfig
 
 ::: novelkit.schemas.OCRConfig
+
+::: novelkit.schemas.BookConfig
+
+::: novelkit.schemas.LoginField
+
+::: novelkit.schemas.ChapterDict
+
+::: novelkit.schemas.MediaResource
+
+::: novelkit.schemas.ChapterInfoDict
+
+::: novelkit.schemas.VolumeInfoDict
+
+::: novelkit.schemas.BookInfoDict
+
+::: novelkit.schemas.ExecutedStageMeta
+
+::: novelkit.schemas.PipelineMeta
+
+::: novelkit.schemas.SearchResult

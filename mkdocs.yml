@@ -80,6 +80,7 @@ nav:
     - Infra:
       - Config Adapter: reference/infra/config_adapter.md
       - Sessions: reference/infra/sessions.md
+      - Chapter Storage: reference/infra/chapter_storage.md
     - Schemas: reference/schemas.md
 
 not_in_nav: |
