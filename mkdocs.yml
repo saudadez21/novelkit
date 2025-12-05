@@ -81,6 +81,7 @@ nav:
       - Config Adapter: reference/infra/config_adapter.md
       - Sessions: reference/infra/sessions.md
       - Chapter Storage: reference/infra/chapter_storage.md
+      - Cookies: reference/infra/cookies.md
     - Schemas: reference/schemas.md
 
 not_in_nav: |
