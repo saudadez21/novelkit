@@ -82,6 +82,8 @@ nav:
       - Sessions: reference/infra/sessions.md
       - Chapter Storage: reference/infra/chapter_storage.md
       - Cookies: reference/infra/cookies.md
+    - Libs:
+      - Filesystem: reference/libs/filesystem.md
     - Schemas: reference/schemas.md
 
 not_in_nav: |
