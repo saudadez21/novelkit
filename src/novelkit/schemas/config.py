@@ -53,7 +53,7 @@ class SessionConfig:
     user_agent: str | None = None
     headers: dict[str, str] | None = None
     cookies: dict[str, str] | None = None
-    impersonate: str | None = None
+    impersonate: str | None = "chrome"
     verify_ssl: bool = True
     http2: bool = True
     trust_env: bool = False

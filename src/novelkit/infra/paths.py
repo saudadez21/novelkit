@@ -8,7 +8,7 @@ PACKAGE_NAME = "novelkit"  # Python package name
 # User-writable directories & files
 # -----------------------------------------------------------------------------
 
-# Base config directory (e.g. ~/AppData/Local/novel_downloader/)
+# Base config directory (e.g. ~/AppData/Local/novelkit/)
 USER_CONFIG_DIR = user_config_path(PACKAGE_NAME, appauthor=False)
 
 STATE_PATH = USER_CONFIG_DIR / "state.json"

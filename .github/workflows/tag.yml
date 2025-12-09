@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - CHANGELOG.md
-      - novel_downloader/__init__.py
+      - novelkit/__init__.py
 
 permissions:
   contents: write

@@ -22,13 +22,10 @@ DEFAULT_ACCEPT = (
     "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
 )
 
-IMAGE_HEADERS = {
-    "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
-    "Accept-Encoding": "gzip, deflate",
-    "Accept-Language": "en,zh;q=0.9,zh-CN;q=0.8",
-    "User-Agent": DEFAULT_USER_AGENT,
-    "Connection": "keep-alive",
-}
+ACCEPT_IMAGE = "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"
+
+ACCEPT_AUDIO = "audio/*,*/*;q=0.8"
+ACCEPT_BINARY = "*/*"
 
 DEFAULT_USER_HEADERS = {
     "Accept": DEFAULT_ACCEPT,
@@ -36,4 +33,13 @@ DEFAULT_USER_HEADERS = {
     "Accept-Language": "en,zh;q=0.9,zh-CN;q=0.8",
     "User-Agent": DEFAULT_USER_AGENT,
     "Connection": "keep-alive",
+}
+
+MEDIA_ACCEPT_MAP: dict[str, str] = {
+    "image": ACCEPT_IMAGE,
+    "audio": ACCEPT_AUDIO,
+    "font": ACCEPT_BINARY,
+    "css": ACCEPT_BINARY,
+    "script": ACCEPT_BINARY,
+    "other": ACCEPT_BINARY,
 }

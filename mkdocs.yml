@@ -77,6 +77,7 @@ nav:
   - Home: index.md
 
   - Reference:
+    - API Examples: reference/api-examples.md
     - Infra:
       - Config Adapter: reference/infra/config_adapter.md
       - Sessions: reference/infra/sessions.md
@@ -84,6 +85,14 @@ nav:
       - Cookies: reference/infra/cookies.md
     - Libs:
       - Filesystem: reference/libs/filesystem.md
+    - Plugins:
+      - Overview: reference/plugins/overview.md
+      - Client: reference/plugins/client.md
+      - Fetcher: reference/plugins/fetcher.md
+      - Parser: reference/plugins/parser.md
+      - Processor: reference/plugins/processor.md
+      - Registry: reference/plugins/registry.md
+      - UI: reference/plugins/ui.md
     - Schemas: reference/schemas.md
 
 not_in_nav: |
