@@ -23,10 +23,13 @@ from novelkit.schemas import FetcherConfig
 #   Config
 # =========================
 
-CONCURRENT = 8  # sites concurrently
+CONCURRENT = 8
 DATA_DIR = Path(__file__).parent / "data"
 CONFIG_DIR = DATA_DIR / "supported_sites"
-EPORT_PATH = DATA_DIR / "site_health_report.json"
+
+RAW_PATH = DATA_DIR / "site_health_raw.json"
+REPORT_PATH = DATA_DIR / "site_health_report.json"
+
 BACKENDS = {"aiohttp", "curl_cffi", "httpx"}
 
 logger = logging.getLogger("site_health")
@@ -49,41 +52,33 @@ class SiteResult(TypedDict):
 
 
 # =========================
-#   Worker for a single site
+#   Helpers
 # =========================
 
 
 def evaluate(text: str, required: list[str], forbidden: list[dict[str, Any]]):
-    """Return (ok, reason, text_for_report)."""
-    # Required check
+    """Return (ok, reason)."""
     for req in required:
         if req not in text:
             return False, f"missing required: {req}"
 
-    # Forbidden match check
     for entry in forbidden:
         keywords = entry.get("keywords", [])
         reason = entry.get("reason", "")
-
         if any(kw in text for kw in keywords):
             return False, reason
 
-    # OK
     return True, ""
 
 
+# =========================
+#   Worker: run checks for one site
+# =========================
+
+
 async def run_health_check_for_site(toml_path: Path) -> list[SiteResult]:
-    """Run health checks for a single site.
-
-    - Loads site config (TOML)
-    - Runs tests for each backend
-    - Serial within site (respecting request_interval)
-    - Returns list[SiteResult]
-    """
-
     site_key = toml_path.stem
 
-    # --- Load TOML ---
     with toml_path.open("rb") as f:
         conf = tomllib.load(f)
 
@@ -103,7 +98,6 @@ async def run_health_check_for_site(toml_path: Path) -> list[SiteResult]:
         logger.info("Site %s - backend=%s", site_key, backend)
 
         async with hub.build_fetcher(site_key, config=fetcher_cfg) as fetcher:
-            # Serial tasks within 1 site
             for item in health_tests:
                 name = item.get("name", "unknown")
                 url = item["url"]
@@ -145,10 +139,53 @@ async def run_health_check_for_site(toml_path: Path) -> list[SiteResult]:
                     }
                 )
 
-                # respect per-site interval
                 await asyncio.sleep(request_interval)
 
     return results
+
+
+# =========================
+#   Summary generator
+# =========================
+
+
+def summarize_grouped(grouped: dict[str, list[SiteResult]]) -> dict[str, Any]:
+    summary: dict[str, Any] = {}
+
+    for site_key, checks in grouped.items():
+        backend_groups: dict[str, list[SiteResult]] = {}
+        for c in checks:
+            backend_groups.setdefault(c["backend"], []).append(c)
+
+        backend_summary = {}
+        all_elapsed = []
+        all_ok_flags = []
+
+        for backend, items in backend_groups.items():
+            elapsed_list = [it["elapsed"] for it in items]
+            ok_list = [it["ok"] for it in items]
+
+            avg_elapsed = sum(elapsed_list) / len(elapsed_list)
+            all_ok = all(ok_list)
+
+            backend_summary[backend] = {
+                "avg_elapsed": avg_elapsed,
+                "all_ok": all_ok,
+            }
+
+            all_elapsed.extend(elapsed_list)
+            all_ok_flags.extend(ok_list)
+
+        site_avg_elapsed = sum(all_elapsed) / len(all_elapsed) if all_elapsed else 0.0
+        site_all_ok = all(all_ok_flags)
+
+        summary[site_key] = {
+            "backend_summary": backend_summary,
+            "site_avg_elapsed": site_avg_elapsed,
+            "site_all_ok": site_all_ok,
+        }
+
+    return summary
 
 
 # =========================
@@ -162,7 +199,7 @@ async def main() -> None:
     toml_files = list(CONFIG_DIR.glob("*.toml"))
     logger.info("Found %d site configs", len(toml_files))
 
-    grouped: dict[str, list[SiteResult]] = {path.stem: [] for path in toml_files}
+    grouped_raw: dict[str, list[SiteResult]] = {path.stem: [] for path in toml_files}
 
     sem = asyncio.Semaphore(CONCURRENT)
 
@@ -170,14 +207,20 @@ async def main() -> None:
         site_key = path.stem
         async with sem:
             result = await run_health_check_for_site(path)
-            grouped[site_key].extend(result)
+            grouped_raw[site_key].extend(result)
 
     await asyncio.gather(*(worker(path) for path in toml_files))
 
-    # Write final grouped JSON
-    EPORT_PATH.write_text(json.dumps(grouped, ensure_ascii=False, indent=2))
+    # === Save RAW ===
+    RAW_PATH.write_text(json.dumps(grouped_raw, ensure_ascii=False, indent=2))
+    logger.info("Raw health data saved to %s", RAW_PATH)
 
-    logger.info("Health check completed. JSON saved to %s", EPORT_PATH)
+    # === Summary  ===
+    report = summarize_grouped(grouped_raw)
+
+    # === Save REPORT ===
+    REPORT_PATH.write_text(json.dumps(report, ensure_ascii=False, indent=2))
+    logger.info("Summary report saved to %s", REPORT_PATH)
 
 
 if __name__ == "__main__":

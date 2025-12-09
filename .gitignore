@@ -215,3 +215,4 @@ raw_data/
 downloads/
 logs/
 *.sqlite
+scripts/data/site_health_raw.json

@@ -105,3 +105,12 @@ def extract_aaatxt(path: str, query: str) -> BookURLInfo | None:
     if m := re.search(r"^/yuedu/(\d+)_(\d+)\.html$", path):
         return _make_info("aaatxt", m.group(1), m.group(2))
     return None
+
+
+@register_extractor(["www.akatsuki-novels.com"])
+def extract_akatsuki_novels(path: str, query: str) -> BookURLInfo | None:
+    if m := re.search("/stories/view/(\\d+)/novel_id~(\\d+)", path):
+        return _make_info("akatsuki_novels", m.group(2), m.group(1))
+    if m := re.search("novel_id~(\\d+)", path):
+        return _make_info("akatsuki_novels", m.group(1), None)
+    return None

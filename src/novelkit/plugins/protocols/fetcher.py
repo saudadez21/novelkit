@@ -23,6 +23,9 @@ class FetcherProtocol(Protocol):
     binary resources.
     """
 
+    site_name: str
+    site_key: str
+
     def __init__(
         self,
         config: FetcherConfig | None = None,

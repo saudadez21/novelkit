@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from importlib import import_module
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypedDict, TypeVar
 
 if TYPE_CHECKING:
     from novelkit.infra.sessions import BaseSession
@@ -29,6 +29,13 @@ if TYPE_CHECKING:
     R = TypeVar("R", bound=ProcessorProtocol)
 
 _PLUGINS_PKG = "novelkit.plugins"
+
+
+class SiteInfo(TypedDict):
+    site_key: str
+    site_name: str
+    r18: bool
+    support_search: bool
 
 
 class PluginHub:
@@ -236,6 +243,54 @@ class PluginHub:
                 continue
 
             result.append(cls)
+
+        return result
+
+    def list_sites(
+        self,
+        *,
+        load_all: bool = False,
+        r18: bool | None = None,
+        support_search: bool | None = None,
+    ) -> list[SiteInfo]:
+        """List supported sites (i.e., those having BOTH fetcher and parser).
+
+        Returns each site's key + name from fetcher.
+        """
+        if load_all:
+            self._load_all_sites("fetcher")
+            self._load_all_sites("parser")
+            self._load_all_sites("client")
+
+        supported_keys = self._fetchers.keys() & self._parsers.keys()
+
+        result: list[SiteInfo] = []
+
+        for key in sorted(supported_keys):
+            fetcher_cls = self._fetchers[key]
+            client_cls = self._client.get(key)
+
+            if client_cls is None:
+                r18_val = False
+                support_search_val = False
+            else:
+                r18_val = client_cls.r18
+                support_search_val = client_cls.support_search
+
+            if r18 is not None and r18_val is not r18:
+                continue
+
+            if support_search is not None and support_search_val is not support_search:
+                continue
+
+            result.append(
+                {
+                    "site_key": key,
+                    "site_name": fetcher_cls.site_name,
+                    "r18": r18_val,
+                    "support_search": support_search_val,
+                }
+            )
 
         return result
 

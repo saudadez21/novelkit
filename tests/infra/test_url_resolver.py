@@ -20,10 +20,15 @@ class SuccessCase:
 CASES_SUCCESS = [
     SuccessCase("http://www.aaatxt.com/shu/24514.html", "aaatxt", "24514", None),
     SuccessCase("http://www.aaatxt.com/yuedu/24514_1.html", "aaatxt", "24514", "1"),
+    SuccessCase("https://www.akatsuki-novels.com/stories/index/novel_id~103", "akatsuki_novels", "103", None),
+    SuccessCase("https://www.akatsuki-novels.com/stories/view/163722/novel_id~103", "akatsuki_novels", "103", "163722"),
+    SuccessCase("https://www.akatsuki-novels.com/stories/index/novel_id~14222#bottom", "akatsuki_novels", "14222", None),
+    SuccessCase("https://www.akatsuki-novels.com/stories/view/138014/novel_id~14222#bottom", "akatsuki_novels", "14222", "138014"),
 ]
 
 CASES_NONE = [
     "http://www.aaatxt.com/",
+    "https://www.akatsuki-novels.com/",
 ]
 
 CASES_INVALID = [

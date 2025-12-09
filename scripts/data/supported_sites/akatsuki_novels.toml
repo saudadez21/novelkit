@@ -1,0 +1,94 @@
+# =========================================
+#   Site metadata
+# =========================================
+[meta]
+key = "akatsuki_novels"
+name = "暁"
+homepage = "https://www.akatsuki-novels.com/"
+alt_domains = []
+site_status = "active"
+languages = ["ja"]
+tags = [
+  "原创",
+  "同人",
+  "二创",
+  "免费",
+  "二次元",
+  "R18",
+  "综合",
+]
+
+description = """
+小説を書きたい人と小説を読みたい人を繋ぐ小説投稿サイトです。
+"""
+
+# =========================================
+#   Site capabilities
+# =========================================
+[capabilities]
+volumes = "partial"
+images = "no"
+login = "partial"
+search = "external"
+
+# =========================================
+#   Network constraints / defaults
+# =========================================
+[network]
+login_required = false
+request_interval = 0.5
+timeout = 10.0
+backend = "aiohttp"
+
+# =========================================
+#   Site health checks
+# =========================================
+[[health]]
+name = "Homepage"
+url = "https://www.akatsuki-novels.com/"
+encoding = "utf-8"
+required = ["暁", "小説投稿サイト"]
+
+# =========================================
+#   URL examples
+# =========================================
+[[examples]]
+title = "书籍页面 (Book URL)"
+url = "https://www.akatsuki-novels.com/stories/index/novel_id~103"
+book_id = "103"
+doc = true  # 文档中展示
+
+[[examples]]
+title = "章节内容页 (Chapter URL)"
+url = "https://www.akatsuki-novels.com/stories/view/163722/novel_id~103"
+book_id = "103"
+chapter_id = "163722"
+doc = true
+
+[[examples]]
+title = "书籍页面 (Book URL)"
+url = "https://www.akatsuki-novels.com/stories/index/novel_id~14222#bottom"
+book_id = "14222"
+doc = false
+
+[[examples]]
+title = "章节内容页 (Chapter URL)"
+url = "https://www.akatsuki-novels.com/stories/view/138014/novel_id~14222#bottom"
+book_id = "14222"
+chapter_id = "138014"
+doc = false
+
+# =========================================
+#   Parser test cases
+# =========================================
+[[parser_tests]]
+book_id = "103"
+chap_ids = ["1471", "163722"]
+
+[[parser_tests]]
+book_id = "26019"
+chap_ids = ["263121"]
+
+[[parser_tests]]
+book_id = "24039"
+chap_ids = ["240334"]
