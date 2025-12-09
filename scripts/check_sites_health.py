@@ -90,6 +90,7 @@ async def run_health_check_for_site(toml_path: Path) -> list[SiteResult]:
     health_tests = conf.get("health", [])
     network_conf = conf.get("network", {})
     request_interval = network_conf.get("request_interval", 0.2)
+    timeout = network_conf.get("timeout", 10.0)
 
     results: list[SiteResult] = []
 
@@ -107,7 +108,6 @@ async def run_health_check_for_site(toml_path: Path) -> list[SiteResult]:
                 name = item.get("name", "unknown")
                 url = item["url"]
                 encoding = item.get("encoding", "utf-8")
-                timeout = item.get("timeout", 10.0)
 
                 required = item.get("required", [])
                 forbidden = item.get("forbidden", [])

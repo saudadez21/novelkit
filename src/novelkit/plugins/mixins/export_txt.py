@@ -108,8 +108,9 @@ class ExportTxtMixin:
             title=book_info["book_name"],
             author=book_info.get("author") or "",
             append_timestamp=cfg.append_timestamp,
-            ext="txt",
+            suffix=".txt",
         )
+        self._output_dir.mkdir(parents=True, exist_ok=True)
         out_path = self._output_dir / sanitize_filename(out_name)
         out_path.write_text(final_text, encoding="utf-8")
         logger.info(
@@ -156,8 +157,9 @@ class ExportTxtMixin:
             title=chap_title,
             author="Unknown",
             append_timestamp=cfg.append_timestamp,
-            ext="txt",
+            suffix=".txt",
         )
+        self._output_dir.mkdir(parents=True, exist_ok=True)
         out_path = self._output_dir / sanitize_filename(out_name)
         out_path.write_text(final_text, encoding="utf-8")
         logger.info(

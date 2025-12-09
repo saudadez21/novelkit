@@ -80,9 +80,10 @@ nav:
     - API Examples: reference/api-examples.md
     - Infra:
       - Config Adapter: reference/infra/config_adapter.md
-      - Sessions: reference/infra/sessions.md
-      - Chapter Storage: reference/infra/chapter_storage.md
+      - URL Resolver: reference/infra/url_resolver.md
       - Cookies: reference/infra/cookies.md
+      - Chapter Storage: reference/infra/chapter_storage.md
+      - Sessions: reference/infra/sessions.md
     - Libs:
       - Filesystem: reference/libs/filesystem.md
     - Plugins:

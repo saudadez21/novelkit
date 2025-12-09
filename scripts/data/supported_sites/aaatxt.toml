@@ -1,0 +1,82 @@
+# =========================================
+#   Site metadata
+# =========================================
+[meta]
+key = "aaatxt"
+name = "3A电子书"
+homepage = "http://www.aaatxt.com/"
+alt_domains = []
+site_status = "unstable"
+languages = ["zh-CN"]
+tags = ["转载", "下载", "成人向", "R18"]
+
+description = """
+txt电子书阅读及下载平台
+"""
+
+# =========================================
+#   Site capabilities
+# =========================================
+[capabilities]
+volumes = "no"
+images = "no"
+login = "partial"
+search = "partial"
+
+# =========================================
+#   Network constraints / defaults
+# =========================================
+[network]
+login_required = false
+request_interval = 0.5
+timeout = 10.0
+backend = "aiohttp"
+
+# =========================================
+#   Site health checks
+# =========================================
+[[health]]
+name = "Homepage"
+url = "http://www.aaatxt.com/"
+encoding = "utf-8"
+required = ["3A电子书"]
+
+[[health.forbidden]]
+keywords = ["内部服务器错误", "连接数据库失败"]
+reason = "Backend database failure"
+
+# =========================================
+#   URL examples
+# =========================================
+[[examples]]
+title = "书籍页面 (Book URL)"
+url = "http://www.aaatxt.com/shu/24514.html"
+book_id = "24514"
+doc = true  # 文档中展示
+
+[[examples]]
+title = "章节内容页 (Chapter URL)"
+url = "http://www.aaatxt.com/yuedu/24514_1.html"
+book_id = "24514"
+chapter_id = "1"
+doc = true
+
+# =========================================
+#   Parser test cases
+# =========================================
+[[parser_tests]]
+book_id = "8757"
+chap_ids = ["2"]
+
+[[parser_tests]]
+book_id = "24514"
+chap_ids = ["8"]
+
+# =========================================
+#   Notes
+# =========================================
+[[notes]]
+title = "其它说明"
+content = """
+* 该站点直接提供 txt 下载。
+"""

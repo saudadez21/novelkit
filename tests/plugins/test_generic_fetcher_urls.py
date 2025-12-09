@@ -57,6 +57,9 @@ def test_generic_fetcher_url_rules(site_path: Path):
         val = getattr(cls, field, None)
         if val is None:
             continue
+        assert val.startswith("http"), (
+            f"{cls.__name__}.{field} must start with 'http': {val!r}"
+        )
         assert not val.endswith("/"), (
             f"{cls.__name__}.{field} must NOT end with '/': {val!r}"
         )
@@ -67,6 +70,9 @@ def test_generic_fetcher_url_rules(site_path: Path):
         for key, val in url_map.items():
             assert isinstance(val, str), (
                 f"{cls.__name__}.{field}[{key!r}] must be a string"
+            )
+            assert val.startswith("http"), (
+                f"{cls.__name__}.{field}[{key!r}] must start with 'http': {val!r}"
             )
             assert not val.endswith("/"), (
                 f"{cls.__name__}.{field}[{key!r}] must NOT end with '/': {val!r}"

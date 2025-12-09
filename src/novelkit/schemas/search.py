@@ -12,7 +12,6 @@ class SearchResult(TypedDict, total=True):
         cover_url: URL to the book's cover image.
         title: Book title.
         author: Author name.
-        description: Short summary or description returned by the site.
         update_date: Human-readable update date string.
         priority: Rank or score indicating result relevance.
     """
@@ -24,6 +23,5 @@ class SearchResult(TypedDict, total=True):
     cover_url: str
     title: str
     author: str
-    description: str
     update_date: str
     priority: int

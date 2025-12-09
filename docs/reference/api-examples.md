@@ -99,7 +99,7 @@ async def main() -> None:
 
         print(f"共找到 {len(results)} 个结果:")
         for idx, item in enumerate(results[:5], start=1):
-            print(f"[{idx}] {item['title']} - {item['author']} ({item['site']})")
+            print(f"[{idx}] {item['title']} - {item['author']} ({item['site_name']})")
 
         # 选择第一个结果进行下载
         first = results[0]
@@ -109,7 +109,7 @@ async def main() -> None:
         await client.download_book(book_id)
 
         # 导出为 txt 与 epub
-        export_result = client.export_book(book_id, formats=["txt", "epub"])
+        client.export_book(book_id, formats=["txt", "epub"])
 
 if __name__ == "__main__":
     asyncio.run(main())

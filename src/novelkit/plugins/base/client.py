@@ -66,8 +66,8 @@ class BaseClient(
     ProcessMixin,
 ):
     site_key: str
-    r18: bool
-    support_search: bool
+    r18: bool = False
+    support_search: bool = False
 
     def __init__(
         self,
@@ -197,8 +197,14 @@ class BaseClient(
         Returns:
             A list of `SearchResult` objects.
         """
-        raw_pages = await self.fetcher.fetch_search_result(keyword, **kwargs)
-        return self.parser.parse_search_result(raw_pages, limit=limit, **kwargs)
+        try:
+            raw_pages = await self.fetcher.fetch_search_result(keyword, **kwargs)
+            return self.parser.parse_search_result(raw_pages, limit=limit, **kwargs)
+        except Exception as e:
+            logger.warning(
+                "search (%s) failed for keyword %r: %s", self.site_key, keyword, e
+            )
+            return []
 
     def export_book(
         self,
