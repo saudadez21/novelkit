@@ -35,6 +35,7 @@ class BaseParser(abc.ABC):
     ADS: set[str] = set()
 
     _SPACE_RE = re.compile(r"\s+")
+    _ZERO_WIDTH_RE = re.compile(r"[\u200B-\u200D\uFEFF]")
     _OCR_MODEL: TextRecognition | None = None
 
     def __init__(self, config: ParserConfig | None = None, **kwargs: Any) -> None:
@@ -191,6 +192,11 @@ class BaseParser(abc.ABC):
             Normalized string.
         """
         return cls._SPACE_RE.sub(c, s).strip()
+
+    @classmethod
+    def _clean_invisible(cls, s: str) -> str:
+        """Remove zero-width characters."""
+        return cls._ZERO_WIDTH_RE.sub("", s)
 
     @staticmethod
     def _first_str(xs: list[str], replaces: list[tuple[str, str]] | None = None) -> str:

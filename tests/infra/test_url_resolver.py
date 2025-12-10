@@ -33,6 +33,8 @@ CASES_SUCCESS = [
     SuccessCase("https://www.alicesw.tw/novel/47396.html", "alicesw", "47396", None),
     SuccessCase("https://www.alicesw.tw/other/chapters/id/47396.html", "alicesw", "47396", None),
     SuccessCase("https://www.alicesw.tw/book/48755/93316df62351f.html", "alicesw", None, "48755-93316df62351f"),
+    SuccessCase("https://www.alphapolis.co.jp/novel/547686423/112003230", "alphapolis", "547686423-112003230", None),
+    SuccessCase("https://www.alphapolis.co.jp/novel/547686423/112003230/episode/10322710", "alphapolis", "547686423-112003230", "10322710"),
 ]
 
 CASES_NONE = [
@@ -40,6 +42,7 @@ CASES_NONE = [
     "https://www.akatsuki-novels.com/",
     "https://www.alicesw.com/",
     "https://www.alicesw.tw/",
+    "https://www.alphapolis.co.jp/",
 ]
 
 CASES_INVALID = [

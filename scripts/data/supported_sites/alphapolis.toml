@@ -1,0 +1,96 @@
+# =========================================
+#   Site metadata
+# =========================================
+[meta]
+key = "alphapolis"
+name = "アルファポリス"
+homepage = "https://www.alphapolis.co.jp/"
+alt_domains = []
+site_status = "active"
+languages = ["ja"]
+tags = ["原创", "免费", "订阅制", "轻小说", "综合"]
+
+description = """
+小説・漫画の投稿サイト「アルファポリス」は、誰でも自由に作品を読めて、書くことができる総合エンターテインメントサイトです。
+
+毎日無料で読める公式連載漫画も充実。ビジネス情報も満載。
+"""
+
+# =========================================
+#   Site capabilities
+# =========================================
+[capabilities]
+volumes = "partial"
+images = "yes"
+login = "partial"
+search = "external"
+
+# =========================================
+#   Network constraints / defaults
+# =========================================
+[network]
+login_required = false
+request_interval = 0.5
+timeout = 10.0
+backend = "aiohttp"
+
+# =========================================
+#   Site health checks
+# =========================================
+[[health]]
+name = "Homepage"
+url = "https://www.alphapolis.co.jp/"
+encoding = "utf-8"
+required = ["アルファポリス"]
+
+# =========================================
+#   URL examples
+# =========================================
+[[examples]]
+title = "书籍页面 (Book URL)"
+url = "https://www.alphapolis.co.jp/novel/547686423/112003230"
+book_id = "547686423-112003230"
+doc = true  # 文档中展示
+
+[[examples]]
+title = "章节内容页 (Chapter URL)"
+url = "https://www.alphapolis.co.jp/novel/547686423/112003230/episode/10322710"
+book_id = "547686423-112003230"
+chapter_id = "10322710"
+doc = true
+
+# =========================================
+#   Parser test cases
+# =========================================
+[[parser_tests]]
+book_id = "547686423-112003230"
+chap_ids = [
+    "10322527",
+    "10322710"
+]
+
+[[parser_tests]]
+book_id = "468999824-268002990"
+chap_ids = [
+    "10318416"
+]
+
+# =========================================
+#   Notes
+# =========================================
+[[notes]]
+title = "其它说明"
+content = """
+若出现 `Empty parse result`, 通常表示以下情况之一:
+
+* 访问过于频繁, 服务器暂时拒绝了请求
+* 页面使用了懒加载机制, 需要额外获取正文内容
+* 章节内容未能正确返回
+
+建议按 `Ctrl+C` 终止程序, 稍候片刻后再次运行。
+
+后续版本将加入:
+
+* 自动重试机制
+* 在需要时自动请求额外页面或正文接口
+"""

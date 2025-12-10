@@ -125,3 +125,12 @@ def extract_alicesw(path: str, query: str) -> BookURLInfo | None:
     if m := re.search("^/other/chapters/id/(\\d+)\\.html$", path):
         return _make_info("alicesw", m.group(1), None)
     return None
+
+
+@register_extractor(["www.alphapolis.co.jp"])
+def extract_alphapolis(path: str, query: str) -> BookURLInfo | None:
+    if m := re.search("^/novel/(\\d+)/(\\d+)/episode/(\\d+)$", path):
+        return _make_info("alphapolis", f"{m.group(1)}-{m.group(2)}", m.group(3))
+    if m := re.search("^/novel/(\\d+)/(\\d+)$", path):
+        return _make_info("alphapolis", f"{m.group(1)}-{m.group(2)}", None)
+    return None
