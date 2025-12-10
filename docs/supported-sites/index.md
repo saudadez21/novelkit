@@ -26,3 +26,4 @@
 | ---------- | ------- | ----- | ---- | ---- | ---- | ---- |
 | [3A电子书](./site-details/aaatxt.md) | `aaatxt` | :material-close: | :material-close: | :material-minus-circle: | :material-minus-circle: | :orange_circle: |
 | [暁](./site-details/akatsuki_novels.md) | `akatsuki_novels` | :material-minus-circle: | :material-close: | :material-minus-circle: | :material-open-in-new: | :green_circle: |
+| [爱丽丝书屋](./site-details/alicesw.md) | `alicesw` | :material-close: | :material-close: | :material-minus-circle: | :material-check: | :green_circle: |

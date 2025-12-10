@@ -25,11 +25,11 @@ txt电子书阅读及下载平台
 
 ## 健康检查报告
 
-| 后端    | 平均耗时   | 状态     |
-| ------- | --------- | -------- |
-| `httpx` | 10.38s | :red_circle: |
-| `aiohttp` | 10.60s | :red_circle: |
-| `curl_cffi` | 10.00s | :red_circle: |
+| 后端    | 状态     |
+| ------- | -------- |
+| `aiohttp` | :red_circle: |
+| `curl_cffi` | :red_circle: |
+| `httpx` | :red_circle: |
 
 ---
 

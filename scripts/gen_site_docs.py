@@ -378,14 +378,14 @@ class SupportedSiteBuilder:
             return "*无可用数据*"
 
         lines: list[str] = [
-            "| 后端    | 平均耗时   | 状态     |",
-            "| ------- | --------- | -------- |",
+            "| 后端    | 状态     |",
+            "| ------- | -------- |",
         ]
-
-        for backend, data in report["backend_summary"].items():
+        backend_summary = report["backend_summary"]
+        for backend in sorted(backend_summary.keys()):
+            data = backend_summary[backend]
             icon = render_backend_status(backend, data)
-            elapsed = f"{data['avg_elapsed']:.2f}s"
-            lines.append(f"| `{backend}` | {elapsed} | {icon} |")
+            lines.append(f"| `{backend}` | {icon} |")
 
         return "\n".join(lines)
 

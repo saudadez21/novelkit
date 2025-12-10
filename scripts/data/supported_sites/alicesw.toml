@@ -1,0 +1,101 @@
+# =========================================
+#   Site metadata
+# =========================================
+[meta]
+key = "alicesw"
+name = "爱丽丝书屋"
+homepage = "https://www.alicesw.com/"
+alt_domains = [
+    "https://www.alicesw.tw/",
+]
+site_status = "active"
+languages = ["zh-CN", "zh-TW"]
+tags = ["转载", "成人向", "R18"]
+
+description = """
+光怪陆离的性与爱...
+"""
+
+# =========================================
+#   Site capabilities
+# =========================================
+[capabilities]
+volumes = "no"
+images = "no"
+login = "partial"
+search = "yes"
+
+# =========================================
+#   Network constraints / defaults
+# =========================================
+[network]
+login_required = false
+request_interval = 0.5
+timeout = 10.0
+backend = "aiohttp"
+
+# =========================================
+#   Site health checks
+# =========================================
+[[health]]
+name = "Homepage"
+url = "https://www.alicesw.com/"
+encoding = "utf-8"
+required = ["爱丽丝书屋"]
+
+# =========================================
+#   URL examples
+# =========================================
+[[examples]]
+title = "书籍页面 (Book URL)"
+url = "https://www.alicesw.com/novel/35573.html"
+book_id = "35573"
+doc = true  # 文档中展示
+
+[[examples]]
+title = "章节目录页 (TOC URL)"
+url = "https://www.alicesw.com/other/chapters/id/35573.html"
+book_id = "35573"
+hidden = false
+doc = true
+
+[[examples]]
+title = "章节内容页 (Chapter URL)"
+url = "https://www.alicesw.com/book/37978/0efc1aa0b9555.html"
+chapter_id = "37978-0efc1aa0b9555"
+doc = true
+
+[[examples]]
+title = "书籍页面 (Book URL)"
+url = "https://www.alicesw.tw/novel/47396.html"
+book_id = "47396"
+doc = false
+
+[[examples]]
+title = "章节目录页 (TOC URL)"
+url = "https://www.alicesw.tw/other/chapters/id/47396.html"
+book_id = "47396"
+doc = false
+
+[[examples]]
+title = "章节内容页 (Chapter URL)"
+url = "https://www.alicesw.tw/book/48755/93316df62351f.html"
+chapter_id = "48755-93316df62351f"
+doc = false
+
+# =========================================
+#   Parser test cases
+# =========================================
+[[parser_tests]]
+book_id = "38811"
+chap_ids = [
+    "40322-7247308553c09",
+    "40322-824b115db2af6"
+]
+
+[[parser_tests]]
+book_id = "43556"
+chap_ids = [
+    "45017-e65a8dbd4b8e1",
+    "45017-aeb4699a55a1a"
+]

@@ -373,6 +373,8 @@ class GenericFetcher(BaseFetcher):
     * Optional requirement for a ``book_id`` when fetching chapters.
     """
 
+    BASE_URL_MAP: dict[str, str] = {}
+
     INFO_BASE_URL: str | None = None
     INFO_BASE_URL_MAP: dict[str, str] = {}
     CATALOG_BASE_URL: str | None = None
@@ -418,18 +420,18 @@ class GenericFetcher(BaseFetcher):
         super().__init__(config, session=session, **kwargs)
         self._info_base = self._pick_base_url(
             locale_style=self._locale_style,
-            base_url_map=self.INFO_BASE_URL_MAP,
-            base_url=self.INFO_BASE_URL,
+            specific_map=self.INFO_BASE_URL_MAP,
+            specific_base=self.INFO_BASE_URL,
         )
         self._catalog_base = self._pick_base_url(
             locale_style=self._locale_style,
-            base_url_map=self.CATALOG_BASE_URL_MAP,
-            base_url=self.CATALOG_BASE_URL,
+            specific_map=self.CATALOG_BASE_URL_MAP,
+            specific_base=self.CATALOG_BASE_URL,
         )
         self._chapter_base = self._pick_base_url(
             locale_style=self._locale_style,
-            base_url_map=self.CHAPTER_BASE_URL_MAP,
-            base_url=self.CHAPTER_BASE_URL,
+            specific_map=self.CHAPTER_BASE_URL_MAP,
+            specific_base=self.CHAPTER_BASE_URL,
         )
 
     async def fetch_book_info(self, book_id: str, **kwargs: Any) -> list[str]:
@@ -653,23 +655,24 @@ class GenericFetcher(BaseFetcher):
     def _pick_base_url(
         self,
         locale_style: str,
-        base_url_map: dict[str, str],
-        base_url: str | None = None,
+        specific_map: dict[str, str],
+        specific_base: str | None,
     ) -> str:
         """Resolves the effective base URL for the given locale style.
 
-        The locale style is normalized to lower case and mapped via
-        `base_url_map`. If there is no entry for the style, the
-        default :attr:`BASE_URL` is used.
-
         Args:
             locale_style: Locale or region style key from the configuration.
-
-        Returns:
-            The base URL that should be used for this fetcher instance.
         """
         key = locale_style.strip().lower()
-        return base_url_map.get(key, base_url) or self.BASE_URL
+        if key in specific_map:
+            return specific_map[key]
+        if specific_base:
+            return specific_base
+        if key in self.BASE_URL_MAP:
+            return self.BASE_URL_MAP[key]
+        if self.BASE_URL:
+            return self.BASE_URL
+        raise ValueError(f"No base URL available for locale '{locale_style}'")
 
     def _transform_book_id(self, book_id: str) -> str:
         """Applies configured replacement rules to a book identifier.

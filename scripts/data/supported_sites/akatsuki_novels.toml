@@ -67,6 +67,24 @@ doc = true
 
 [[examples]]
 title = "书籍页面 (Book URL)"
+url = "https://www.akatsuki-novels.com/stories/index/novel_id~24039"
+book_id = "24039"
+doc = false
+
+[[examples]]
+title = "书籍页面 (Book URL)"
+url = "https://www.akatsuki-novels.com/stories/index/novel_id~24039/page~2"
+book_id = "24039"
+doc = false
+
+[[examples]]
+title = "书籍页面 (Book URL)"
+url = "https://www.akatsuki-novels.com/stories/index/page~3/novel_id~24039"
+book_id = "24039"
+doc = false
+
+[[examples]]
+title = "书籍页面 (Book URL)"
 url = "https://www.akatsuki-novels.com/stories/index/novel_id~14222#bottom"
 book_id = "14222"
 doc = false

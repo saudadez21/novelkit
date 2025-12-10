@@ -22,13 +22,24 @@ CASES_SUCCESS = [
     SuccessCase("http://www.aaatxt.com/yuedu/24514_1.html", "aaatxt", "24514", "1"),
     SuccessCase("https://www.akatsuki-novels.com/stories/index/novel_id~103", "akatsuki_novels", "103", None),
     SuccessCase("https://www.akatsuki-novels.com/stories/view/163722/novel_id~103", "akatsuki_novels", "103", "163722"),
+    SuccessCase("https://www.akatsuki-novels.com/stories/index/novel_id~24039", "akatsuki_novels", "24039", None),
+    SuccessCase("https://www.akatsuki-novels.com/stories/index/novel_id~24039/page~2", "akatsuki_novels", "24039", None),
+    SuccessCase("https://www.akatsuki-novels.com/stories/index/page~3/novel_id~24039", "akatsuki_novels", "24039", None),
     SuccessCase("https://www.akatsuki-novels.com/stories/index/novel_id~14222#bottom", "akatsuki_novels", "14222", None),
     SuccessCase("https://www.akatsuki-novels.com/stories/view/138014/novel_id~14222#bottom", "akatsuki_novels", "14222", "138014"),
+    SuccessCase("https://www.alicesw.com/novel/35573.html", "alicesw", "35573", None),
+    SuccessCase("https://www.alicesw.com/other/chapters/id/35573.html", "alicesw", "35573", None),
+    SuccessCase("https://www.alicesw.com/book/37978/0efc1aa0b9555.html", "alicesw", None, "37978-0efc1aa0b9555"),
+    SuccessCase("https://www.alicesw.tw/novel/47396.html", "alicesw", "47396", None),
+    SuccessCase("https://www.alicesw.tw/other/chapters/id/47396.html", "alicesw", "47396", None),
+    SuccessCase("https://www.alicesw.tw/book/48755/93316df62351f.html", "alicesw", None, "48755-93316df62351f"),
 ]
 
 CASES_NONE = [
     "http://www.aaatxt.com/",
     "https://www.akatsuki-novels.com/",
+    "https://www.alicesw.com/",
+    "https://www.alicesw.tw/",
 ]
 
 CASES_INVALID = [

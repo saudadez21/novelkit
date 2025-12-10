@@ -114,3 +114,14 @@ def extract_akatsuki_novels(path: str, query: str) -> BookURLInfo | None:
     if m := re.search("novel_id~(\\d+)", path):
         return _make_info("akatsuki_novels", m.group(1), None)
     return None
+
+
+@register_extractor(["www.alicesw.com", "www.alicesw.tw"])
+def extract_alicesw(path: str, query: str) -> BookURLInfo | None:
+    if m := re.search("^/book/(\\d+)/([^.]+)\\.html$", path):
+        return _make_info("alicesw", None, f"{m.group(1)}-{m.group(2)}")
+    if m := re.search("^/novel/(\\d+)\\.html$", path):
+        return _make_info("alicesw", m.group(1), None)
+    if m := re.search("^/other/chapters/id/(\\d+)\\.html$", path):
+        return _make_info("alicesw", m.group(1), None)
+    return None

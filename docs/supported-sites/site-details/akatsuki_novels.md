@@ -28,11 +28,11 @@ tags:
 
 ## 健康检查报告
 
-| 后端    | 平均耗时   | 状态     |
-| ------- | --------- | -------- |
-| `httpx` | 1.04s | :green_circle: |
-| `aiohttp` | 0.93s | :green_circle: |
-| `curl_cffi` | 0.99s | :green_circle: |
+| 后端    | 状态     |
+| ------- | -------- |
+| `aiohttp` | :green_circle: |
+| `curl_cffi` | :green_circle: |
+| `httpx` | :green_circle: |
 
 ---
 
