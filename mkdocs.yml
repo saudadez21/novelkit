@@ -76,6 +76,10 @@ extra_javascript:
 nav:
   - Home: index.md
 
+  - Supported Sites:
+    - Overview: supported-sites/index.md
+    - Tags: supported-sites/tags.md
+
   - Reference:
     - API Examples: reference/api-examples.md
     - Infra:

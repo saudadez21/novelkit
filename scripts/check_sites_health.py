@@ -178,11 +178,13 @@ def summarize_grouped(grouped: dict[str, list[SiteResult]]) -> dict[str, Any]:
 
         site_avg_elapsed = sum(all_elapsed) / len(all_elapsed) if all_elapsed else 0.0
         site_all_ok = all(all_ok_flags)
+        site_any_ok = any(all_ok_flags)
 
         summary[site_key] = {
             "backend_summary": backend_summary,
             "site_avg_elapsed": site_avg_elapsed,
             "site_all_ok": site_all_ok,
+            "site_any_ok": site_any_ok,
         }
 
     return summary

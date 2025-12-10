@@ -216,3 +216,4 @@ downloads/
 logs/
 *.sqlite
 scripts/data/site_health_raw.json
+scripts/data/site_health_report.json
