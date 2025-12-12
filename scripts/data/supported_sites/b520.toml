@@ -1,0 +1,92 @@
+# =========================================
+#   Site metadata
+# =========================================
+[meta]
+key = "b520"
+name = "笔趣阁"
+homepage = "http://www.b520.cc"
+alt_domains = []
+site_status = "unstable"
+languages = ["zh-CN"]
+tags = ["转载", "笔趣阁"]
+
+description = """
+新笔趣阁网站收录了当前最火热的网络小说
+"""
+
+# =========================================
+#   Site capabilities
+# =========================================
+[capabilities]
+volumes = "no"
+images = "no"
+login = "partial"
+search = "yes"
+
+# =========================================
+#   Network constraints / defaults
+# =========================================
+[network]
+login_required = false
+request_interval = 0.5
+timeout = 10.0
+backend = "aiohttp"
+
+# =========================================
+#   Site health checks
+# =========================================
+[[health]]
+name = "Homepage"
+url = "http://www.b520.cc"
+encoding = "utf-8"
+required = ["笔趣阁"]
+
+# =========================================
+#   URL examples
+# =========================================
+[[examples]]
+title = "Book URL"
+url = "http://www.b520.cc/8_8187/"
+book_id = "8_8187"
+doc = true  # 文档中展示
+
+[[examples]]
+title = "Chapter URL"
+url = "http://www.b520.cc/8_8187/3899831.html"
+book_id = "8_8187"
+chapter_id = "3899831"
+doc = true
+
+# =========================================
+#   Parser test cases
+# =========================================
+[[parser_tests]]
+book_id = "8_8187"
+chap_ids = ["3899817"]
+
+[[parser_tests]]
+book_id = "52_52542"
+chap_ids = [
+    "20380548",
+    "177912231"
+]
+
+# =========================================
+#   Notes
+# =========================================
+[[notes]]
+title = "Book ID 说明"
+content = """
+`book_id` 由两部分组成: `"{catalog}_{book_id}"`。
+
+其中:
+
+* `book_id` 为原始书籍 ID (纯数字)
+* `catalog` 为 `book_id % 1000` 的结果 (取模 1000)
+
+!!! example "示例"
+    * `123` -> `0_123`
+    * `50123` -> `50_50123`
+
+> 当仅提供纯数字时, 程序会自动补全 catalog 前缀
+"""

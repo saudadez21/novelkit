@@ -27,7 +27,7 @@ jobs:
           cache-dependency-path: .github/workflows/deploy_docs.yml
 
       - name: Install MkDocs
-        run: pip install mkdocs-material mkdocstrings mkdocstrings-python mkdocs-minify-plugin
+        run: pip install .[docs]
 
       - name: Deploy documentation
         run: mkdocs gh-deploy --force

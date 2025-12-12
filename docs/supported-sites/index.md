@@ -28,3 +28,4 @@
 | [暁](./site-details/akatsuki_novels.md) | `akatsuki_novels` | :material-minus-circle: | :material-close: | :material-minus-circle: | :material-open-in-new: | :green_circle: |
 | [爱丽丝书屋](./site-details/alicesw.md) | `alicesw` | :material-close: | :material-close: | :material-minus-circle: | :material-check: | :green_circle: |
 | [アルファポリス](./site-details/alphapolis.md) | `alphapolis` | :material-minus-circle: | :material-check: | :material-minus-circle: | :material-open-in-new: | :green_circle: |
+| [笔趣阁](./site-details/b520.md) | `b520` | :material-close: | :material-close: | :material-minus-circle: | :material-check: | :orange_circle: |

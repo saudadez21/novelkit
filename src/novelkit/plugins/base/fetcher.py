@@ -347,6 +347,18 @@ class BaseFetcher(abc.ABC):
             else urljoin(cls.BASE_URL, url)
         )
 
+    @staticmethod
+    def _add_prefix(book_id: str, sep: str = "/", auto_detect: bool = True) -> str:
+        """Add prefix to book_id using separator.
+
+        If auto_detect is True and book_id already contains prefix separator,
+        return book_id unchanged.
+        """
+        if auto_detect and sep in book_id:
+            return book_id
+        prefix = "0" if len(book_id) <= 3 else book_id[:-3]
+        return f"{prefix}{sep}{book_id}"
+
     async def __aenter__(self) -> Self:
         await self.init()
         return self

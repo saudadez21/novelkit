@@ -134,3 +134,12 @@ def extract_alphapolis(path: str, query: str) -> BookURLInfo | None:
     if m := re.search("^/novel/(\\d+)/(\\d+)$", path):
         return _make_info("alphapolis", f"{m.group(1)}-{m.group(2)}", None)
     return None
+
+
+@register_extractor(["www.b520.cc"])
+def extract_b520(path: str, query: str) -> BookURLInfo | None:
+    if m := re.search("^/(\\d+_\\d+)/(\\d+)\\.html$", path):
+        return _make_info("b520", m.group(1), m.group(2))
+    if m := re.search("^/(\\d+_\\d+)/?$", path):
+        return _make_info("b520", m.group(1), None)
+    return None
