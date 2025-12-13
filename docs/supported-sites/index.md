@@ -29,3 +29,4 @@
 | [爱丽丝书屋](./site-details/alicesw.md) | `alicesw` | :material-close: | :material-close: | :material-minus-circle: | :material-check: | :green_circle: |
 | [アルファポリス](./site-details/alphapolis.md) | `alphapolis` | :material-minus-circle: | :material-check: | :material-minus-circle: | :material-open-in-new: | :green_circle: |
 | [笔趣阁](./site-details/b520.md) | `b520` | :material-close: | :material-close: | :material-minus-circle: | :material-check: | :orange_circle: |
+| [哔哩哔哩 (专栏)](./site-details/bilibili.md) | `bilibili` | :material-close: | :material-check: | :material-minus-circle: | :material-open-in-new: | :green_circle: |

@@ -37,6 +37,10 @@ CASES_SUCCESS = [
     SuccessCase("https://www.alphapolis.co.jp/novel/547686423/112003230/episode/10322710", "alphapolis", "547686423-112003230", "10322710"),
     SuccessCase("http://www.b520.cc/8_8187/", "b520", "8_8187", None),
     SuccessCase("http://www.b520.cc/8_8187/3899831.html", "b520", "8_8187", "3899831"),
+    SuccessCase("https://www.bilibili.com/read/readlist/rl73910", "bilibili", "rl73910", None),
+    SuccessCase("https://www.bilibili.com/opus/117568184198533819/", "bilibili", None, "117568184198533819"),
+    SuccessCase("https://www.bilibili.com/read/readlist/rl499319?spm_id_from=333.1369.opus.module_collection.click", "bilibili", "rl499319", None),
+    SuccessCase("https://www.bilibili.com/opus/601761541358410067/?from=readlist", "bilibili", None, "601761541358410067"),
 ]
 
 CASES_NONE = [
@@ -46,6 +50,7 @@ CASES_NONE = [
     "https://www.alicesw.tw/",
     "https://www.alphapolis.co.jp/",
     "http://www.b520.cc",
+    "https://search.bilibili.com/article",
 ]
 
 CASES_INVALID = [

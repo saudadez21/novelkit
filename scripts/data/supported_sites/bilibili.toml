@@ -1,0 +1,114 @@
+# =========================================
+#   Site metadata
+# =========================================
+[meta]
+key = "bilibili"
+name = "哔哩哔哩 (专栏)"
+homepage = "https://search.bilibili.com/article"
+alt_domains = []
+site_status = "active"
+languages = ["zh-CN"]
+tags = ["原创", "转载", "免费", "二次元"]
+
+description = """
+哔哩哔哩专栏是为全体UP主开放的个人空间、自媒体平台，UP主可通过专栏平台分享自己的经验、攻略、心得等文章信息
+"""
+
+# =========================================
+#   Site capabilities
+# =========================================
+[capabilities]
+volumes = "no"
+images = "yes"
+login = "partial"
+search = "external"
+
+# =========================================
+#   Network constraints / defaults
+# =========================================
+[network]
+login_required = false
+request_interval = 0.5
+timeout = 10.0
+backend = "aiohttp"
+
+# =========================================
+#   Site health checks
+# =========================================
+[[health]]
+name = "Homepage"
+url = "https://search.bilibili.com/article"
+encoding = "utf-8"
+required = ["哔哩哔哩"]
+
+# =========================================
+#   URL examples
+# =========================================
+[[examples]]
+title = "书籍页面 (Book URL)"
+url = "https://www.bilibili.com/read/readlist/rl73910"
+book_id = "rl73910"
+doc = true  # 文档中展示
+
+[[examples]]
+title = "章节内容页 (Chapter URL)"
+url = "https://www.bilibili.com/opus/117568184198533819/"
+chapter_id = "117568184198533819"
+doc = true
+
+[[examples]]
+title = "书籍页面 (Book URL)"
+url = "https://www.bilibili.com/read/readlist/rl499319?spm_id_from=333.1369.opus.module_collection.click"
+book_id = "rl499319"
+doc = false
+
+[[examples]]
+title = "章节内容页 (Chapter URL)"
+url = "https://www.bilibili.com/opus/601761541358410067/?from=readlist"
+chapter_id = "601761541358410067"
+doc = false
+
+# =========================================
+#   Parser test cases
+# =========================================
+# [[parser_tests]]
+# book_id = "rl73910"
+# chap_ids = ["117568184198533819"]
+
+# [[parser_tests]]
+# book_id = "rl499319"
+# chap_ids = ["601761541358410067"]
+
+# [[parser_tests]]
+# book_id = "rl512349"
+# chap_ids = ["617114666463142945"]
+
+[[parser_tests]]
+book_id = "rl682564"
+chap_ids = ["756899213433897040", "794024438363324424"]
+
+# [[parser_tests]]
+# book_id = "rl683148"
+# chap_ids = ["911759065179226112"]
+
+# [[parser_tests]]
+# book_id = "rl725219"
+# chap_ids = ["811712290251341863"]
+
+[[parser_tests]]
+book_id = "rl810567"
+chap_ids = ["907680478339792900"]
+
+# =========================================
+#   Notes
+# =========================================
+[[notes]]
+title = "访问频率限制"
+content = """
+当请求过于频繁时, 服务器可能返回验证码页面, 导致内容暂时无法获取
+
+应对方式:
+
+* 控制请求频率: 合理设置请求间隔, 避免在短时间内连续请求大量资源
+* 等待限制解除后重试: 该类限制通常为临时措施, 在访问频率降低后, 会在数分钟内自动解除, 可稍后再次尝试
+"""

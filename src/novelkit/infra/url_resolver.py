@@ -143,3 +143,12 @@ def extract_b520(path: str, query: str) -> BookURLInfo | None:
     if m := re.search("^/(\\d+_\\d+)/?$", path):
         return _make_info("b520", m.group(1), None)
     return None
+
+
+@register_extractor(["www.bilibili.com"])
+def extract_bilibili(path: str, query: str) -> BookURLInfo | None:
+    if m := re.search(r"^/read/readlist/(rl\d+)/?$", path):
+        return _make_info("bilibili", m.group(1), None)
+    if m := re.search(r"^/opus/(\d+)/?$", path):
+        return _make_info("bilibili", None, m.group(1))
+    return None
